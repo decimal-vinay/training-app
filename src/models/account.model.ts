@@ -93,6 +93,14 @@ export class Account extends Entity {
   @belongsTo(() => User, {name: 'modifiedByUser'})
   modifiedBy: number;
 
+
+  @property({
+    type: 'object',
+    default: {},
+    persist: false
+  })
+  interface: object;
+
   constructor(data?: Partial<Account>) {
     super(data);
   }
