@@ -1,4 +1,4 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {Account} from './account.model';
 
 @model({
@@ -68,6 +68,14 @@ export class User extends Entity {
     index: true
   })
   empcode: string;
+
+  @property({
+    type: 'object',
+    default: {},
+    persist: false,
+    hidden: true
+  })
+  interface: object;
 
   @hasMany(() => Account, {keyTo: 'createdBy'})
   accounts: Account[];

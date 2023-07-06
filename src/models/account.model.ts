@@ -97,7 +97,8 @@ export class Account extends Entity {
   @property({
     type: 'object',
     default: {},
-    persist: false
+    persist: false,
+    hidden: true
   })
   interface: object;
 
