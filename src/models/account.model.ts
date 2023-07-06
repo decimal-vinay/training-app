@@ -1,7 +1,13 @@
 import {Entity, belongsTo, model, property} from '@loopback/repository';
 import {User} from './user.model';
 
-@model()
+@model(
+  {
+    settings: {
+      strict: false
+    }
+  }
+)
 export class Account extends Entity {
   @property({
     type: 'number',
