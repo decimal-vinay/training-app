@@ -187,7 +187,9 @@ export class UserController {
       },
     },
   })
-  async findByEmpcode(empcode: string): Promise<User | null> {
+  async findByEmpcode(
+    @param.path.number('empcode') empcode: string
+  ): Promise<User | null> {
     return await this.userRepository.findOne({where: {empcode}});
   }
 
