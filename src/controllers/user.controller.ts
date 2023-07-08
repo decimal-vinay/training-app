@@ -177,6 +177,20 @@ export class UserController {
     return this.userRepository.findById(id, filter);
   }
 
+
+  @get('/users/{empcode}')
+  @response(200, {
+    description: 'User model instance',
+    content: {
+      'application/json': {
+        schema: getModelSchemaRef(User, {includeRelations: true}),
+      },
+    },
+  })
+  async findByEmpcode(empcode: string): Promise<User | null> {
+    return await this.userRepository.findOne({where: {empcode}});
+  }
+
   @patch('/users/{id}')
   @response(204, {
     description: 'User PATCH success',
