@@ -70,6 +70,16 @@ export class User extends Entity {
   empcode: string;
 
   @property({
+    type: 'string',
+    required: true,
+    index: true,
+    jsonSchema: {
+      enum: ['Admin', 'User'],
+    }
+  })
+  role: string;
+
+  @property({
     type: 'object',
     default: {},
     persist: false,
