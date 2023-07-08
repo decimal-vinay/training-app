@@ -54,7 +54,7 @@ export class UserController {
       },
     })
     credentials: {empcode: string; password: string},
-  ): Promise<{token: string}> {
+  ): Promise<{status: string}> {
     const {empcode, password} = credentials;
     const user = await this.userRepository.findOne({
       where: {empcode},
@@ -74,8 +74,8 @@ export class UserController {
     }
 
     // Generate and return an access token (e.g., using JWT)
-    const token = 'SUCCESS';
-    return {token};
+    const status = 'SUCCESS';
+    return {status};
   }
 
 
