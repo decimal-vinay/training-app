@@ -89,16 +89,22 @@ export class AccountController {
     content: {
       'application/json': {
         schema: {
-          type: 'array',
-          items: getModelSchemaRef(Account, {includeRelations: true}),
+          type: 'object',
+          properties: {
+            records: {
+              type: 'array',
+              items: getModelSchemaRef(Account, {includeRelations: true})
+            }
+          }
         },
       },
     },
   })
   async find(
     @param.filter(Account) filter?: Filter<Account>,
-  ): Promise<Account[]> {
-    return this.accountRepository.find(filter);
+  ): Promise<{records: Account[]}> {
+    const accs = this.accountRepository.find(filter);
+    return {records: accs};
   }
 
   @patch('/accounts')
