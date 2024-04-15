@@ -27,6 +27,16 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
     command: postgres -p 5888
 
+  db_dms:
+    image: postgres
+    ports:
+      - 5889:5889
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=dms
+    command: postgres -p 5889
+
   migrate:
     build:
       context: .
